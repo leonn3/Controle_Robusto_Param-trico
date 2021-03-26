@@ -1,0 +1,9 @@
+Go=0.7;
+E=0.1
+Wo=6.28
+
+Gs = tf(Go*Wo^2,[1 2*E*Wo Wo^2])
+
+G=tf(num,den);
+
+bode(G);
