@@ -1,0 +1,47 @@
+%{  
+Este programa calcula as raizes e o vértice da 
+parábola  f(x)=a*x^2 + b*x + c. Plota f(x) para 101 valores
+de x no intervalo [-9,1]. 
+%} 
+
+% Entra com os valores de a, b e c
+
+a=1; b=4; c=1.75;
+
+% Calcula as raizes e as coordenadas do vértice  
+
+Delta= b^2 - 4*a*c;
+x1=(-b+sqrt(Delta))/(2*a);
+x2=(-b-sqrt(Delta))/(2*a);
+
+xv=-b/(2*a);
+yv=-Delta/(4*a);
+
+% Calcula 101 valores de f(x), para 101 vakores de x no intervalo [-9,1]  
+
+X=[-9:0.1:1];
+
+Y=zeros(1,101);
+
+for k=1:101;
+    Y(k)=a*(X(k)^2)+b*X(k)+c;
+end;
+
+% Plota x versus f(x), em cor azul 
+
+plot(X,Y,"b*");
+hold on;
+
+% Plota os pontos das raizes e do vértice
+plot(x1,0,"r*");
+hold on;
+plot(x2,0,"r*");
+hold on;
+plot(xv,yv,"r*");
+hold on;
+
+% Insere os rótulos e as linhas de grade dos eixos
+
+xlabel("x");          
+ylabel("f(x)");         
+grid on;           
