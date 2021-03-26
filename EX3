@@ -1,0 +1,29 @@
+clear all; close all; clc;
+Go=2;
+To=3;
+ts = 0.01;
+
+num=[0 Go];
+
+den=[To 1];
+
+G=tf(num,den);
+
+t=[0:ts:20];
+u=[zeros(1,100),ones(1,1901)];
+
+y=lsim(u,t,G);
+
+% Plota os resultados  
+
+ 
+plot(t,u,"b", 'LineWidth', 2);
+hold on;
+
+plot(t,y,"r*");
+title("Resposta ao degrau unitário, para G(s)=2/(3s+1)");
+legend("u(t)","y(t)");
+xlabel("Tempo (seg)");          
+ylabel("y(t)");          
+grid on;
+grid minor;
