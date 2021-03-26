@@ -1,0 +1,60 @@
+%{
+ Autor: Prof. Dr. Walter Barra Jr., PPGEE-UFPA
+ Editado por: Woldson Leonne
+
+   F(s)=(s+1)/(sk^2+sk+1)
+ 
+ para 360  pontos s igualmente espaçados no contorno circular, de raio 
+ 1 e // centrado no ponto -1+j*1. 
+%}
+
+
+F=zeros(360,1);   % vetor para armazenar os pontos de G(s).
+R=1.0;            % raio do contorno circular C. 
+centro=-1+i*1;   % centro do contorno circular C.
+Dteta=(2*pi)/360;  % incrementos angulares de 1 grau. 
+
+% Calcula os valores de todos os zeros e os pólos de G(s)
+
+%  Laço para calcular os valores dos pontos do contorno C. 
+
+for k=1:360;
+     tetak=k*Dteta; 
+     C(k)=R*exp(i*tetak);
+     C(k)=C(k)+centro;
+end;
+
+%  Laço para calcular os valores dos pontos do mapeamento G(s), para
+%  os pontos s do contorno C. 
+
+for k=1:360;
+    sk=C(k);
+    F(k)=(sk+1)/(sk^2 + sk + 1);
+end
+
+% Plota os resultados  
+
+% 1) Plota o contorno C 
+ 
+subplot(1,2,1);plot(real(C),imag(C),"b*");
+
+
+% Insere título, rótulos dos eixos e linhas de grade.
+
+title("Plano S");
+xlabel("Eixo real");          
+ylabel("Eixo imag");          
+grid on;
+
+
+% 2) Plota o mapeamento F(s), calculado para os pontos s do contorno C. 
+
+subplot(1,2,2);plot(real(F),imag(F),"r*");
+
+
+% Insere título, rótulos dos eixos e linhas de grade.
+
+title("Plano F");
+xlabel("Eixo real");   
+ylabel("Eixo imag");    
+grid on;
